@@ -60,11 +60,15 @@ def parse_invoice_bytes(pdf_bytes: bytes) -> pd.DataFrame:
     return pd.DataFrame(columns=["ingredient","qty","unit","total_cost_gross"])
 
 def parse_image_bytes(img_bytes: bytes) -> pd.DataFrame:
-    if _OCR_READER is None: return pd.DataFrame()
+    if _OCR_READER is None:
+        return pd.DataFrame()
     try:
-        img=Image.open(io.BytesIO(img_bytes)).convert("RGB")
-        import numpy as np as _np
-        result=_OCR_READER.readtext(_np.array(img), detail=0, paragraph=True)
-        return _extract("\n".join(result))
+        from PIL import Image
+        import numpy as _np
+        img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+        result = _OCR_READER.readtext(_np.array(img), detail=0, paragraph=True)
+        text = "\n".join(result)
+        return _extract(text)
     except Exception:
         return pd.DataFrame()
+
