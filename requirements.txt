@@ -1,0 +1,7 @@
+streamlit>=1.36
+pandas
+numpy
+pyyaml
+pdfplumber
+Pillow
+# easyocr  # opcional para OCR de fotos/PDF escaneado

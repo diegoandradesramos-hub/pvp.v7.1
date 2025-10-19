@@ -1,0 +1,6 @@
+currency_symbol: €
+default_target_margin: 0.7
+iva_defaults:
+  retail: 0.21
+  servicio: 0.1
+overhead_per_portion: 0.0
